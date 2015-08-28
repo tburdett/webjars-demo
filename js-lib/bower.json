@@ -1,0 +1,26 @@
+{
+  "name": "js-lib",
+  "version": "0.0.1",
+  "authors": [
+    "Tony Burdett <tburdett@ebi.ac.uk>"
+  ],
+  "description": "Simple Hello World demo library",
+  "main": "src/main/javascript/helloWorld.js",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "demo"
+  ],
+  "license": "Apache 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
