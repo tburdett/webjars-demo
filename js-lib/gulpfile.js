@@ -10,7 +10,6 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var mbf = require('main-bower-files');
 var concat = require('gulp-concat');
-var browserify = require('gulp-browserify');
 var del = require('del');
 var runSequence = require('run-sequence');
 
@@ -20,9 +19,16 @@ gulp.task('clean', function() {
     del(TARGET);
 });
 
+gulp.task('download', function() {
+    return gulp.src(mbf())
+            .pipe(uglify())
+            .pipe(rename({extname: '.min.js'}))
+            .pipe(gulp.dest(TARGET));
+});
+
 gulp.task('package-libraries', function() {
-    gulp.src(mbf())
-            .pipe(concat('third-party-libraries.js'))
+    return gulp.src(mbf())
+            .pipe(concat('vendor.js'))
             .pipe(uglify())
             .pipe(rename({extname: '.min.js'}))
             .pipe(gulp.dest(TARGET));
@@ -35,14 +41,8 @@ gulp.task('package-js', function() {
             .pipe(gulp.dest(TARGET));
 });
 
-gulp.task('browserify', function () {
-    gulp.src([TARGET + 'helloWorld.min.js'])
-            .pipe(browserify())
-            .pipe(gulp.dest(TARGET));
-});
-
 gulp.task('install', function(callback) {
-    runSequence(
+    return runSequence(
             'clean',
             'package-libraries',
             'package-js',

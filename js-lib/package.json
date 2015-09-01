@@ -1,0 +1,23 @@
+{
+  "name": "js-lib",
+  "version": "0.0.1",
+  "authors": [
+    "Tony Burdett <tburdett@ebi.ac.uk>"
+  ],
+  "description": "Simple Hello World demo library",
+  "main": "src/main/javascript/helloWorld.js",
+  "devDependencies": {
+    "bower": "^1.5.2",
+    "del": "^2.0.0",
+    "gulp": "~3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.4.0",
+    "main-bower-files": "^2.9.0",
+    "run-sequence": "^1.1.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "Apache 2.0"
+}

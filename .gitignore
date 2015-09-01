@@ -1,0 +1,4 @@
+# JS library local caches
+bower_components
+node_modules
+node

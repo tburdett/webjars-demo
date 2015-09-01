@@ -27,48 +27,66 @@
         <!--<upstream.url>UPSTREAM_ZIP_URL</upstream.url>-->
         <!--<destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>-->
         <!--<requirejs>-->
-            <!--{-->
-            <!--"paths": {-->
-            <!--"WEBJAR_ID": "MAIN_JS"-->
-            <!--},-->
-            <!--"shim": {-->
-            <!--"WEBJAR_ID": ["DEP_ID"]-->
-            <!--}-->
-            <!--}-->
+        <!--{-->
+        <!--"paths": {-->
+        <!--"WEBJAR_ID": "MAIN_JS"-->
+        <!--},-->
+        <!--"shim": {-->
+        <!--"WEBJAR_ID": ["DEP_ID"]-->
+        <!--}-->
+        <!--}-->
         <!--</requirejs>-->
     </properties>
 
     <build>
-        <!--<plugins>-->
-            <!--<plugin>-->
-                <!--<groupId>com.github.eirslett</groupId>-->
-                <!--<artifactId>frontend-maven-plugin</artifactId>-->
-                <!--<version>0.0.25</version>-->
+        <plugins>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>0.0.25</version>
 
-                <!--&lt;!&ndash; optional &ndash;&gt;-->
-                <!--&lt;!&ndash;<configuration>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<workingDirectory>src/main/frontend</workingDirectory>&ndash;&gt;-->
-                <!--&lt;!&ndash;</configuration>&ndash;&gt;-->
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <nodeVersion>v0.12.6</nodeVersion>
+                            <npmVersion>2.11.2</npmVersion>
+                        </configuration>
+                    </execution>
 
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>gulp build</id>-->
-                        <!--<goals>-->
-                            <!--<goal>gulp</goal>-->
-                        <!--</goals>-->
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                    </execution>
 
-                        <!--&lt;!&ndash; optional: the default phase is "generate-resources" &ndash;&gt;-->
-                        <!--<phase>generate-resources</phase>-->
+                    <execution>
+                        <id>bower install</id>
+                        <goals>
+                            <goal>bower</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                    </execution>
 
-                        <!--<configuration>-->
-                            <!--&lt;!&ndash; optional: if not specified, it will run gulp's default-->
-                            <!--task (and you can remove this whole <configuration> section.) &ndash;&gt;-->
-                            <!--<arguments>build</arguments>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
+                    <execution>
+                        <id>gulp install</id>
+                        <goals>
+                            <goal>gulp</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
